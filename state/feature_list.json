@@ -52,12 +52,12 @@
       "name": "Giao diện chat cho học sinh",
       "description": "UI kiểu Claude chat, responsive điện thoại, danh sách phiên, màn hình chào, đăng xuất, dán/chọn ảnh, hiển thị markdown và công thức.",
       "complexity": "medium",
-      "status": "in-progress",
+      "status": "done",
       "layer": "Full-stack",
       "dependencies": [
         "FEAT-002"
       ],
-      "evidence": null,
+      "evidence": "https://github.com/thanhquang2003/teacher-bot/pull/3",
       "created": "2026-11-06",
       "updated": "2026-11-06"
     },

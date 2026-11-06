@@ -23,22 +23,27 @@
       "type": "infra",
       "priority": "high",
       "complexity": "small",
-      "status": "in-progress",
+      "status": "done",
       "depends_on": [
         "FEAT-003"
       ],
       "blocks_feature": null,
       "assigned_session": "2026-11-06T14:43:33.514Z",
       "started": "2026-11-06",
-      "completed_session": null,
-      "fix_commit": null,
-      "evidence": null,
+      "completed_session": "2026-11-06T15:57:27.480Z",
+      "fix_commit": "28292ad",
+      "evidence": "https://mta.thinhdhm.id.vn/teacher-bot/ (200, SSE qua nginx OK; script deploy/install-nginx.sh PR #6)",
       "notes": null,
       "work_log": [
         {
           "session": "2026-11-06T14:43:33.514Z",
           "done": "Starting work.",
-          "remaining": "TBD"
+          "remaining": null
+        },
+        {
+          "session": "2026-11-06T15:57:27.480Z",
+          "done": "Done. Evidence: https://mta.thinhdhm.id.vn/teacher-bot/ (200, SSE qua nginx OK; script deploy/install-nginx.sh PR #6)",
+          "remaining": null
         }
       ]
     },

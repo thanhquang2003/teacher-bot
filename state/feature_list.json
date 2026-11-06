@@ -22,10 +22,10 @@
         "học sinh:đăng xuất để người khác vào"
       ],
       "complexity": "medium",
-      "status": "in-progress",
+      "status": "done",
       "layer": "Full-stack",
       "dependencies": [],
-      "evidence": null,
+      "evidence": "https://github.com/thanhquang2003/teacher-bot/pull/1",
       "created": "2026-11-06",
       "updated": "2026-11-06"
     },

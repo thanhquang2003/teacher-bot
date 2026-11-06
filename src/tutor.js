@@ -19,6 +19,11 @@ const LEVELS = {
     style:
       'Dùng thuật ngữ đúng của chương trình lớp 9, lập luận chặt chẽ, trình bày các bước như bài giải mẫu. Nhắc cách kiểm tra lại kết quả và lỗi thường gặp trong kỳ thi vào lớp 10.',
   },
+  '12': {
+    label: 'học sinh lớp 12 (khoảng 17–18 tuổi, ôn thi tốt nghiệp THPT và xét tuyển đại học)',
+    style:
+      'Dùng thuật ngữ chính xác của chương trình lớp 12, lập luận chặt chẽ, trình bày như bài giải mẫu của đề thi. Chỉ ra dạng bài thường gặp, mẹo tính nhanh và bẫy hay gặp trong đề thi tốt nghiệp, nhắc cách kiểm tra điều kiện và đơn vị trước khi kết luận.',
+  },
   'dai-hoc': {
     label: 'sinh viên đại học',
     style:

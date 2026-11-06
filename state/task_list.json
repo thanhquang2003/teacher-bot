@@ -78,16 +78,22 @@
       "type": "chore",
       "priority": "medium",
       "complexity": "small",
-      "status": "open",
+      "status": "in-progress",
       "depends_on": [],
       "blocks_feature": null,
-      "assigned_session": null,
-      "started": null,
+      "assigned_session": "2026-11-06T15:37:20.336Z",
+      "started": "2026-11-06",
       "completed_session": null,
       "fix_commit": null,
       "evidence": null,
       "notes": null,
-      "work_log": []
+      "work_log": [
+        {
+          "session": "2026-11-06T15:37:20.336Z",
+          "done": "Starting work.",
+          "remaining": "TBD"
+        }
+      ]
     }
   ]
 }

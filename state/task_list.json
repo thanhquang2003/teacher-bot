@@ -15,5 +15,26 @@
     "id_format": "TASK-NNN",
     "evidence_rule": "Tasks cannot move to done without evidence."
   },
-  "tasks": []
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Triển khai: systemd + nginx /teacher-bot",
+      "description": "Chạy service cổng 8791, thêm location /teacher-bot/ vào nginx mta.thinhdhm.id.vn, kiểm tra từ ngoài.",
+      "type": "infra",
+      "priority": "high",
+      "complexity": "small",
+      "status": "open",
+      "depends_on": [
+        "FEAT-003"
+      ],
+      "blocks_feature": null,
+      "assigned_session": null,
+      "started": null,
+      "completed_session": null,
+      "fix_commit": null,
+      "evidence": null,
+      "notes": null,
+      "work_log": []
+    }
+  ]
 }

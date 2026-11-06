@@ -11,5 +11,69 @@
     "dependency_rule": "A feature in dependencies must be done before this feature can be in-progress.",
     "use_cases_rule": "use_cases lists actor:goal bullets — who can do what. Full Given/When/Then lives in docs/specs/FEAT-NNN.md."
   },
-  "features": []
+  "features": [
+    {
+      "id": "FEAT-001",
+      "name": "Nền tảng: server, SQLite, hồ sơ và đăng nhập thiết bị",
+      "description": "Express + SQLite; hồ sơ (tên, lớp); cookie thiết bị; đăng nhập lần đầu, tự nhận diện, đăng xuất, vào lại bằng tên+lớp.",
+      "use_cases": [
+        "học sinh:vào lần đầu chọn tên và lớp",
+        "học sinh:tự vào lại trên máy cũ",
+        "học sinh:đăng xuất để người khác vào"
+      ],
+      "complexity": "medium",
+      "status": "planned",
+      "layer": "Full-stack",
+      "dependencies": [],
+      "evidence": null,
+      "created": "2026-11-06",
+      "updated": "2026-11-06"
+    },
+    {
+      "id": "FEAT-002",
+      "name": "Phiên học, AI gia sư và gửi ảnh",
+      "description": "Nhiều phiên học như chat, lưu lịch sử, lớp trung gian AI (claude CLI), prompt gia sư theo lớp, streaming SSE, upload ảnh, hàng đợi đồng thời, thông báo hết limit.",
+      "use_cases": [
+        "học sinh:hỏi bằng chữ và ảnh và được giảng từng bước",
+        "học sinh:tạo và chuyển giữa các phiên học"
+      ],
+      "complexity": "medium",
+      "status": "planned",
+      "layer": "Full-stack",
+      "dependencies": [
+        "FEAT-001"
+      ],
+      "evidence": null,
+      "created": "2026-11-06",
+      "updated": "2026-11-06"
+    },
+    {
+      "id": "FEAT-003",
+      "name": "Giao diện chat cho học sinh",
+      "description": "UI kiểu Claude chat, responsive điện thoại, danh sách phiên, màn hình chào, đăng xuất, dán/chọn ảnh, hiển thị markdown và công thức.",
+      "complexity": "medium",
+      "status": "planned",
+      "layer": "Full-stack",
+      "dependencies": [
+        "FEAT-002"
+      ],
+      "evidence": null,
+      "created": "2026-11-06",
+      "updated": "2026-11-06"
+    },
+    {
+      "id": "FEAT-004",
+      "name": "Trang admin chọn nguồn AI",
+      "description": "/admin bằng ADMIN_PASSWORD; chọn provider claude|codex|api key, số lượt đồng thời, xem lỗi gần nhất.",
+      "complexity": "small",
+      "status": "planned",
+      "layer": "Full-stack",
+      "dependencies": [
+        "FEAT-002"
+      ],
+      "evidence": null,
+      "created": "2026-11-06",
+      "updated": "2026-11-06"
+    }
+  ]
 }

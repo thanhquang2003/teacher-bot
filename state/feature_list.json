@@ -38,7 +38,7 @@
         "học sinh:tạo và chuyển giữa các phiên học"
       ],
       "complexity": "medium",
-      "status": "planned",
+      "status": "in-progress",
       "layer": "Full-stack",
       "dependencies": [
         "FEAT-001"

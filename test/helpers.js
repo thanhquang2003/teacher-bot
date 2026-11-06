@@ -1,8 +1,8 @@
 const { createApp } = require('../src/app');
 
-async function start(overrides = {}) {
+async function start(overrides = {}, opts = {}) {
   const cfg = { port: 0, host: '127.0.0.1', basePath: '/teacher-bot', dataDir: ':memory:', adminPassword: 'secret', cookieSecure: false, ...overrides };
-  const app = createApp(cfg);
+  const app = createApp(cfg, undefined, opts);
   const server = await new Promise((r) => { const s = app.listen(0, '127.0.0.1', () => r(s)); });
   const base = `http://127.0.0.1:${server.address().port}${cfg.basePath}`;
   return { app, server, base, cfg, close: () => new Promise((r) => server.close(r)) };

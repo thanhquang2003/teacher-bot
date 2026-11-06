@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quản trị — Gia sư</title><link rel="stylesheet" href="style.css">
+<style>body{padding:16px}.wrap{max-width:560px;margin:0 auto}.card{max-width:none;margin-bottom:16px}.card h2{margin-top:0}select,input{width:100%;padding:.55em .7em;border:1px solid var(--line);border-radius:10px;background:var(--bg);margin-top:.25em}.ok{color:#15803d}pre{white-space:pre-wrap;background:var(--bg);padding:.6em;border-radius:8px;overflow:auto}.k{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}</style></head>
+<body><div class="wrap">
+<div id="login" class="card" hidden><h2>Quản trị</h2><form id="lf"><label>Mật khẩu admin<input id="pw" type="password" autocomplete="current-password"></label><p id="le" class="err"></p><button class="primary">Vào</button></form></div>
+<div id="main" hidden>
+ <div class="card"><h2>Nguồn AI</h2>
+  <form id="sf">
+   <label>Đang dùng<select id="provider"><option value="claude">Claude Code (subscription trên VPS)</option><option value="codex">Codex CLI</option><option value="api">Anthropic API key</option></select></label>
+   <label>Số lượt hỏi chạy cùng lúc (1–6)<input id="concurrency" type="number" min="1" max="6"></label>
+   <label>Model Claude Code<input id="claude_model"></label>
+   <label>Model Codex (để trống = mặc định)<input id="codex_model"></label>
+   <label>Model API<input id="api_model"></label>
+   <label>API key <span id="keystate" class="muted"></span><input id="api_key" type="password" autocomplete="off" placeholder="Để trống = giữ nguyên"></label>
+   <p id="se" class="err"></p>
+   <button class="primary">Lưu</button> <button type="button" id="test">Hỏi thử</button> <button type="button" id="clearkey" class="link">Xoá API key</button>
+   <pre id="tr" hidden></pre>
+  </form></div>
+ <div class="card"><h2>Lỗi AI gần nhất</h2><pre id="le2">—</pre><p>Hàng đợi: <span id="q"></span> · Dữ liệu: <span id="st"></span></p></div>
+ <button id="out" class="link">Đăng xuất admin</button>
+</div></div>
+<script src="admin.js"></script></body></html>

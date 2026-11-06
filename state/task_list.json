@@ -49,20 +49,25 @@
       "type": "chore",
       "priority": "medium",
       "complexity": "small",
-      "status": "in-progress",
+      "status": "done",
       "depends_on": [],
       "blocks_feature": null,
       "assigned_session": "2026-11-06T15:33:32.508Z",
       "started": "2026-11-06",
-      "completed_session": null,
-      "fix_commit": null,
-      "evidence": null,
+      "completed_session": "2026-11-06T15:36:44.356Z",
+      "fix_commit": "f23239a",
+      "evidence": "https://github.com/thanhquang2003/teacher-bot/pull/7",
       "notes": null,
       "work_log": [
         {
           "session": "2026-11-06T15:33:32.508Z",
           "done": "Starting work.",
-          "remaining": "TBD"
+          "remaining": null
+        },
+        {
+          "session": "2026-11-06T15:36:44.356Z",
+          "done": "Done. Evidence: https://github.com/thanhquang2003/teacher-bot/pull/7",
+          "remaining": null
         }
       ]
     }

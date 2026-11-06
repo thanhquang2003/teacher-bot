@@ -38,12 +38,12 @@
         "học sinh:tạo và chuyển giữa các phiên học"
       ],
       "complexity": "medium",
-      "status": "in-progress",
+      "status": "done",
       "layer": "Full-stack",
       "dependencies": [
         "FEAT-001"
       ],
-      "evidence": null,
+      "evidence": "https://github.com/thanhquang2003/teacher-bot/pull/2",
       "created": "2026-11-06",
       "updated": "2026-11-06"
     },

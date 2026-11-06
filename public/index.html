@@ -1,3 +1,43 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><title>Teacher Bot</title></head>
-<body><p>Đang dựng giao diện…</p></body></html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gia sư của em</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="login" hidden>
+  <form id="login-form" class="card">
+    <h1>Chào bạn 👋</h1>
+    <p>Mình là gia sư của bạn. Cho mình biết tên và lớp của bạn nhé.</p>
+    <label>Tên của bạn<input id="name" maxlength="40" autocomplete="given-name" required></label>
+    <fieldset><legend>Bạn học lớp mấy?</legend><div id="grades" class="grades"></div></fieldset>
+    <p id="login-err" class="err" role="alert"></p>
+    <button type="submit" class="primary">Bắt đầu học</button>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <aside id="side">
+    <button id="new" class="primary">+ Phiên học mới</button>
+    <ul id="sessions"></ul>
+    <div class="who"><span id="who"></span><button id="logout" class="link">Đăng xuất</button></div>
+  </aside>
+  <div id="scrim"></div>
+  <main>
+    <header><button id="menu" aria-label="Menu">☰</button><h2 id="title">Phiên học mới</h2></header>
+    <div id="msgs" aria-live="polite"></div>
+    <form id="composer">
+      <div id="thumbs"></div>
+      <div class="row">
+        <label class="attach" title="Gửi ảnh bài tập">📷<input id="file" type="file" accept="image/*" multiple hidden></label>
+        <textarea id="text" rows="1" maxlength="4000" placeholder="Hỏi gia sư…" title="Enter để gửi, Shift+Enter xuống dòng"></textarea>
+        <button id="send" class="primary" type="submit">Gửi</button>
+      </div>
+    </form>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

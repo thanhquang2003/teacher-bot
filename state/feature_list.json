@@ -52,7 +52,7 @@
       "name": "Giao diện chat cho học sinh",
       "description": "UI kiểu Claude chat, responsive điện thoại, danh sách phiên, màn hình chào, đăng xuất, dán/chọn ảnh, hiển thị markdown và công thức.",
       "complexity": "medium",
-      "status": "planned",
+      "status": "in-progress",
       "layer": "Full-stack",
       "dependencies": [
         "FEAT-002"

@@ -1,0 +1,15 @@
+{
+  "_template_version": "1.0.0",
+  "_notes": {
+    "status_values": [
+      "planned",
+      "in-progress",
+      "done",
+      "blocked"
+    ],
+    "id_format": "FEAT-NNN",
+    "dependency_rule": "A feature in dependencies must be done before this feature can be in-progress.",
+    "use_cases_rule": "use_cases lists actor:goal bullets — who can do what. Full Given/When/Then lives in docs/specs/FEAT-NNN.md."
+  },
+  "features": []
+}

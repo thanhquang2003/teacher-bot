@@ -66,12 +66,12 @@
       "name": "Trang admin chọn nguồn AI",
       "description": "/admin bằng ADMIN_PASSWORD; chọn provider claude|codex|api key, số lượt đồng thời, xem lỗi gần nhất.",
       "complexity": "small",
-      "status": "in-progress",
+      "status": "done",
       "layer": "Full-stack",
       "dependencies": [
         "FEAT-002"
       ],
-      "evidence": null,
+      "evidence": "https://github.com/thanhquang2003/teacher-bot/pull/4",
       "created": "2026-11-06",
       "updated": "2026-11-06"
     }

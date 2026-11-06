@@ -41,6 +41,24 @@
           "remaining": "TBD"
         }
       ]
+    },
+    {
+      "id": "TASK-002",
+      "title": "Bổ sung lớp 2",
+      "description": "Thêm lớp 2 vào danh sách lớp và prompt gia sư (rất đơn giản, câu ngắn, ví dụ đồ vật).",
+      "type": "chore",
+      "priority": "medium",
+      "complexity": "small",
+      "status": "open",
+      "depends_on": [],
+      "blocks_feature": null,
+      "assigned_session": null,
+      "started": null,
+      "completed_session": null,
+      "fix_commit": null,
+      "evidence": null,
+      "notes": null,
+      "work_log": []
     }
   ]
 }

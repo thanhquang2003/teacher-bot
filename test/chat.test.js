@@ -130,6 +130,7 @@ test('provider được chọn theo cấu hình', async () => {
 
 test('prompt gia sư khác nhau theo lớp, có lớp 2', () => {
   assert.match(systemPrompt('2', 'Bé'), /lớp 2/);
+  assert.match(systemPrompt('12', 'Bé'), /lớp 12/);
   assert.notEqual(systemPrompt('2', 'A'), systemPrompt('5', 'A'));
   assert.notEqual(systemPrompt('5', 'A'), systemPrompt('dai-hoc', 'A'));
   assert.match(systemPrompt('dai-hoc', 'A'), /đại học/);

@@ -11,7 +11,7 @@ test('chưa đăng nhập thì /api/me trả profile null', async () => {
   const me = await c.json('/api/me');
   assert.equal(me.profile, null);
   assert.equal(me.grades['5'], 'Lớp 5');
-  assert.deepEqual(Object.keys(me.grades), ['2', '5', '6', '9', 'dai-hoc']);
+  assert.deepEqual(Object.keys(me.grades), ['2', '5', '6', '9', '12', 'dai-hoc']);
 });
 
 test('đăng nhập lần đầu tạo hồ sơ, lần sau tự nhận diện qua cookie', async () => {
@@ -52,7 +52,7 @@ test('đăng xuất ở máy này không đăng xuất máy khác của cùng h�
 test('từ chối tên rỗng, lớp sai, cookie giả', async () => {
   const c = client(s.base);
   assert.equal((await c.call('/api/login', { method: 'POST', body: { name: '  ', grade: '5' } })).status, 400);
-  assert.equal((await c.call('/api/login', { method: 'POST', body: { name: 'A', grade: '12' } })).status, 400);
+  assert.equal((await c.call('/api/login', { method: 'POST', body: { name: 'A', grade: '7' } })).status, 400);
   assert.equal((await c.call('/api/login', { method: 'POST', body: { name: 'A', grade: '__proto__' } })).status, 400);
   const bad = await c.json('/api/me', { headers: { cookie: 'tb_device=khonghople' } });
   assert.equal(bad.profile, null);

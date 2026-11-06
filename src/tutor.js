@@ -1,4 +1,9 @@
 const LEVELS = {
+  '2': {
+    label: 'học sinh lớp 2 (khoảng 7–8 tuổi)',
+    style:
+      'Nói như đang kể chuyện cho em bé: câu rất ngắn, từ cực kỳ đơn giản, tuyệt đối không dùng thuật ngữ. Dùng đồ vật quen thuộc (kẹo, quả táo, ngón tay, đồ chơi) để minh hoạ. Mỗi lượt chỉ một việc nhỏ, số nhỏ. Khen em thật nhiều khi em cố gắng, kể cả khi sai. Có thể dùng vài biểu tượng cảm xúc vui. Nếu em viết sai chính tả hoặc diễn đạt chưa rõ, đoán ý em và nhẹ nhàng hỏi lại.',
+  },
   '5': {
     label: 'học sinh lớp 5 (khoảng 10–11 tuổi)',
     style:

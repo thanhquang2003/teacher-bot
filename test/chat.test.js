@@ -128,7 +128,9 @@ test('provider được chọn theo cấu hình', async () => {
   void session;
 });
 
-test('prompt gia sư khác nhau theo lớp', () => {
+test('prompt gia sư khác nhau theo lớp, có lớp 2', () => {
+  assert.match(systemPrompt('2', 'Bé'), /lớp 2/);
+  assert.notEqual(systemPrompt('2', 'A'), systemPrompt('5', 'A'));
   assert.notEqual(systemPrompt('5', 'A'), systemPrompt('dai-hoc', 'A'));
   assert.match(systemPrompt('dai-hoc', 'A'), /đại học/);
 });

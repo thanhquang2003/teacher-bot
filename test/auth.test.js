@@ -11,6 +11,7 @@ test('chưa đăng nhập thì /api/me trả profile null', async () => {
   const me = await c.json('/api/me');
   assert.equal(me.profile, null);
   assert.equal(me.grades['5'], 'Lớp 5');
+  assert.deepEqual(Object.keys(me.grades), ['2', '5', '6', '9', 'dai-hoc']);
 });
 
 test('đăng nhập lần đầu tạo hồ sơ, lần sau tự nhận diện qua cookie', async () => {

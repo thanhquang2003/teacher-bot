@@ -64,3 +64,17 @@ test('cờ Secure khi bật COOKIE_SECURE', async () => {
   assert.match(r.headers.get('set-cookie'), /Secure/);
   await t.close();
 });
+
+test('phụ huynh đăng ký với lớp của con (2 hoặc 5), tách khỏi hồ sơ học sinh cùng tên', async () => {
+  const c = client(s.base);
+  const bad = await c.call('/api/login', { method: 'POST', body: { name: 'Mẹ Bin', grade: '9', role: 'parent' } });
+  assert.equal(bad.status, 400);
+  const p = await c.json('/api/login', { method: 'POST', body: { name: 'Mẹ Bin', grade: '5', role: 'parent' } });
+  assert.equal(p.profile.role, 'parent');
+  const st = await client(s.base).json('/api/login', { method: 'POST', body: { name: 'Mẹ Bin', grade: '5' } });
+  assert.equal(st.profile.role, 'student');
+  assert.notEqual(st.profile.id, p.profile.id);
+  const me = await c.json('/api/me');
+  assert.deepEqual(me.parentGrades, ['2', '5']);
+  assert.equal(me.profile.role, 'parent');
+});

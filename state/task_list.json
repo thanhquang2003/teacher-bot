@@ -104,6 +104,30 @@
           "remaining": null
         }
       ]
+    },
+    {
+      "id": "TASK-004",
+      "title": "Rút gọn hỏi đáp tối đa 3 bước + hồ sơ phụ huynh (lớp 2/5)",
+      "description": "1) Gia sư học sinh chỉ dẫn dắt tối đa 3 lượt/bước rồi phải giải mẫu đầy đủ. 2) Thêm vai trò phụ huynh khi đăng ký: hỏi lớp của con (2 hoặc 5), không hỏi đáp, chỉ giảng và đưa cách giải/cách hướng dẫn con.",
+      "type": "chore",
+      "priority": "high",
+      "complexity": "medium",
+      "status": "in-progress",
+      "depends_on": [],
+      "blocks_feature": null,
+      "assigned_session": "2026-11-08T04:01:41.863Z",
+      "started": "2026-11-08",
+      "completed_session": null,
+      "fix_commit": null,
+      "evidence": null,
+      "notes": null,
+      "work_log": [
+        {
+          "session": "2026-11-08T04:01:41.863Z",
+          "done": "Starting work.",
+          "remaining": "TBD"
+        }
+      ]
     }
   ]
 }

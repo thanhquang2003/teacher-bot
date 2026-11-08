@@ -48,7 +48,7 @@ test('tạo phiên, hỏi bằng chữ, nhận stream, lưu lịch sử và tự
   assert.equal(sessions[0].title, 'Tính 3/4 + 1/8');
   const last = calls.at(-1);
   assert.match(last.system, /Lớp|lớp 5/);
-  assert.match(last.system, /KHÔNG đưa đáp án cuối cùng/);
+  assert.match(last.system, /TỐI ĐA 3 bước/);
 });
 
 test('lượt sau gửi kèm lịch sử hội thoại', async () => {
@@ -134,4 +134,13 @@ test('prompt gia sư khác nhau theo lớp, có lớp 2', () => {
   assert.notEqual(systemPrompt('2', 'A'), systemPrompt('5', 'A'));
   assert.notEqual(systemPrompt('5', 'A'), systemPrompt('dai-hoc', 'A'));
   assert.match(systemPrompt('dai-hoc', 'A'), /đại học/);
+});
+
+test('prompt học sinh giới hạn tối đa 3 bước; prompt phụ huynh không hỏi đáp', () => {
+  assert.match(systemPrompt('5', 'Bé'), /TỐI ĐA 3 bước/);
+  const pp = systemPrompt('2', 'Mẹ Bin', 'parent');
+  assert.match(pp, /phụ huynh/);
+  assert.match(pp, /lớp 2/);
+  assert.match(pp, /KHÔNG hỏi ngược lại/);
+  assert.doesNotMatch(pp, /TỐI ĐA 3 bước/);
 });

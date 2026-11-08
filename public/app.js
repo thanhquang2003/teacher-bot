@@ -1,6 +1,6 @@
 (() => {
   const $ = (id) => document.getElementById(id);
-  const state = { profile: null, grades: {}, sessions: [], current: null, busy: false, images: [] };
+  const state = { profile: null, grades: {}, parentGrades: [], sessions: [], current: null, busy: false, images: [] };
 
   async function api(path, opts = {}) {
     const res = await fetch('api/' + path, {
@@ -35,15 +35,27 @@
   }
 
   // ---- đăng nhập ----
+  const role = () => document.querySelector('input[name=role]:checked')?.value || 'student';
+  function drawGrades() {
+    const parent = role() === 'parent';
+    const list = Object.entries(state.grades).filter(([k]) => !parent || state.parentGrades.includes(k));
+    $('grades').innerHTML = list.map(([k, v]) => `<label><input type="radio" name="grade" value="${k}"><span>${esc(v)}</span></label>`).join('');
+    $('grade-legend').textContent = parent ? 'Con anh/chị học lớp mấy?' : 'Bạn học lớp mấy?';
+    $('name-label').textContent = parent ? 'Tên của anh/chị' : 'Tên của bạn';
+    $('login-intro').textContent = parent
+      ? 'Mình sẽ giảng bài và chỉ cách giải để anh/chị kèm con học. Không cần trả lời câu hỏi nào.'
+      : 'Mình là gia sư của bạn. Cho mình biết tên và lớp của bạn nhé.';
+  }
   function showLogin() {
     $('app').hidden = true; $('login').hidden = false;
-    $('grades').innerHTML = Object.entries(state.grades).map(([k, v]) => `<label><input type="radio" name="grade" value="${k}"><span>${esc(v)}</span></label>`).join('');
+    drawGrades();
   }
+  $('roles').addEventListener('change', drawGrades);
   $('login-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const grade = document.querySelector('input[name=grade]:checked')?.value;
     $('login-err').textContent = '';
-    const res = await api('login', { method: 'POST', body: { name: $('name').value, grade } });
+    const res = await api('login', { method: 'POST', body: { name: $('name').value, grade, role: role() } });
     const data = await res.json();
     if (!res.ok) { $('login-err').textContent = data.error || 'Có lỗi, bạn thử lại nhé.'; return; }
     state.profile = data.profile; await enter();
@@ -53,7 +65,7 @@
   // ---- phiên học ----
   async function enter() {
     $('login').hidden = true; $('app').hidden = false;
-    $('who').textContent = `${state.profile.name} · ${state.grades[state.profile.grade]}`;
+    $('who').textContent = state.profile.role === 'parent' ? `${state.profile.name} · Phụ huynh lớp ${state.profile.grade}` : `${state.profile.name} · ${state.grades[state.profile.grade]}`;
     await loadSessions();
     if (state.sessions.length) await open(state.sessions[0].id); else await newSession();
   }
@@ -90,7 +102,7 @@
     $('msgs').innerHTML = '';
     const s = state.sessions.find((x) => x.id === id);
     $('title').textContent = s ? s.title : 'Phiên học';
-    if (!messages.length) $('msgs').innerHTML = `<div class="empty"><h3>Xin chào ${esc(state.profile.name)}!</h3><p>Hỏi mình bất kỳ điều gì, hoặc chụp ảnh bài tập gửi lên. Mình sẽ cùng bạn tìm cách giải, để bạn tự làm được nhé.</p></div>`;
+    if (!messages.length) $('msgs').innerHTML = `<div class="empty"><h3>Xin chào ${esc(state.profile.name)}!</h3><p>${state.profile.role === 'parent' ? 'Gửi đề bài hoặc chụp ảnh bài tập của con. Mình sẽ giảng và chỉ cách giải để anh/chị hướng dẫn con.' : 'Hỏi mình bất kỳ điều gì, hoặc chụp ảnh bài tập gửi lên. Mình sẽ cùng bạn tìm cách giải, để bạn tự làm được nhé.'}</p></div>`;
     for (const m of messages) bubble(m.role === 'user' ? 'user' : 'bot', m.role === 'user' ? imgs(m.images) + render(m.content) : render(m.content));
     document.querySelectorAll('#sessions li').forEach((li, i) => li.classList.toggle('on', state.sessions[i]?.id === id));
     scroll();
@@ -171,7 +183,7 @@
 
   (async () => {
     const me = await (await api('me')).json();
-    state.grades = me.grades; state.profile = me.profile;
+    state.grades = me.grades; state.parentGrades = me.parentGrades || []; state.profile = me.profile;
     if (me.profile) await enter(); else showLogin();
   })();
 })();

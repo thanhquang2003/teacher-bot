@@ -10,9 +10,15 @@
 <section id="login" hidden>
   <form id="login-form" class="card">
     <h1>Chào bạn 👋</h1>
-    <p>Mình là gia sư của bạn. Cho mình biết tên và lớp của bạn nhé.</p>
-    <label>Tên của bạn<input id="name" maxlength="40" autocomplete="given-name" required></label>
-    <fieldset><legend>Bạn học lớp mấy?</legend><div id="grades" class="grades"></div></fieldset>
+    <p id="login-intro">Mình là gia sư của bạn. Cho mình biết tên và lớp của bạn nhé.</p>
+    <fieldset><legend>Bạn là ai?</legend>
+      <div class="grades" id="roles">
+        <label><input type="radio" name="role" value="student" checked><span>Học sinh</span></label>
+        <label><input type="radio" name="role" value="parent"><span>Phụ huynh</span></label>
+      </div>
+    </fieldset>
+    <label><span id="name-label">Tên của bạn</span><input id="name" maxlength="40" autocomplete="given-name" required></label>
+    <fieldset><legend id="grade-legend">Bạn học lớp mấy?</legend><div id="grades" class="grades"></div></fieldset>
     <p id="login-err" class="err" role="alert"></p>
     <button type="submit" class="primary">Bắt đầu học</button>
   </form>

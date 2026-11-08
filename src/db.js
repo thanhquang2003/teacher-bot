@@ -46,6 +46,9 @@ function open(dataDir) {
       value TEXT NOT NULL
     );
   `);
+  if (!db.prepare('PRAGMA table_info(profiles)').all().some((c) => c.name === 'role')) {
+    db.exec(`ALTER TABLE profiles ADD COLUMN role TEXT NOT NULL DEFAULT 'student'`);
+  }
   return db;
 }
 

@@ -1,5 +1,5 @@
 const crypto = require('node:crypto');
-const { isGrade } = require('./grades');
+const { isGrade, isParentGrade } = require('./grades');
 
 const COOKIE = 'tb_device';
 const YEAR = 365 * 24 * 3600;
@@ -35,7 +35,7 @@ function createAuth(db, cfg) {
     if (!token) return null;
     const row = db
       .prepare(
-        `SELECT p.id, p.name, p.grade FROM devices d JOIN profiles p ON p.id = d.profile_id WHERE d.token_hash = ?`
+        `SELECT p.id, p.name, p.grade, p.role FROM devices d JOIN profiles p ON p.id = d.profile_id WHERE d.token_hash = ?`
       )
       .get(sha(token));
     if (row) db.prepare(`UPDATE devices SET last_seen = datetime('now') WHERE token_hash = ?`).run(sha(token));
@@ -55,15 +55,19 @@ function createAuth(db, cfg) {
   function login(req, res) {
     const name = normalizeName(req.body?.name);
     const grade = req.body?.grade;
+    const role = req.body?.role === 'parent' ? 'parent' : 'student';
     if (!name) return res.status(400).json({ error: 'Bạn nhập tên giúp mình nhé.' });
-    if (!isGrade(grade)) return res.status(400).json({ error: 'Bạn chọn lớp giúp mình nhé.' });
-    const key = name.toLowerCase();
-    let p = db.prepare('SELECT id, name, grade FROM profiles WHERE name_key = ? AND grade = ?').get(key, grade);
+    if (role === 'parent' ? !isParentGrade(grade) : !isGrade(grade)) {
+      return res.status(400).json({ error: role === 'parent' ? 'Anh/chị cho biết con đang học lớp 2 hay lớp 5 nhé.' : 'Bạn chọn lớp giúp mình nhé.' });
+    }
+    // Hồ sơ phụ huynh tách riêng khỏi hồ sơ học sinh trùng tên (khoá có tiền tố).
+    const key = (role === 'parent' ? 'ph:' : '') + name.toLowerCase();
+    let p = db.prepare('SELECT id, name, grade, role FROM profiles WHERE name_key = ? AND grade = ?').get(key, grade);
     if (!p) {
       const { n } = db.prepare('SELECT COUNT(*) AS n FROM profiles').get();
       if (n >= MAX_PROFILES) return res.status(429).json({ error: 'Hệ thống đã đủ số hồ sơ.' });
-      const r = db.prepare('INSERT INTO profiles (name, name_key, grade) VALUES (?, ?, ?)').run(name, key, grade);
-      p = { id: Number(r.lastInsertRowid), name, grade };
+      const r = db.prepare('INSERT INTO profiles (name, name_key, grade, role) VALUES (?, ?, ?, ?)').run(name, key, grade, role);
+      p = { id: Number(r.lastInsertRowid), name, grade, role };
     }
     const token = crypto.randomBytes(32).toString('hex');
     db.prepare('INSERT INTO devices (token_hash, profile_id) VALUES (?, ?)').run(sha(token), p.id);

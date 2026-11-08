@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('node:path');
 const { open } = require('./db');
 const { createAuth } = require('./auth');
-const { GRADES } = require('./grades');
+const { GRADES, PARENT_GRADES } = require('./grades');
 const { createSettings } = require('./settings');
 const { createAi } = require('./ai');
 const { createChat } = require('./chat');
@@ -21,7 +21,7 @@ function createApp(cfg, db = open(cfg.dataDir), { runners } = {}) {
   router.use('/api/me', express.json({ limit: '1mb' }));
   router.use('/api/login', express.json({ limit: '1mb' }));
 
-  router.get('/api/me', (req, res) => res.json({ profile: req.profile, grades: GRADES }));
+  router.get('/api/me', (req, res) => res.json({ profile: req.profile, grades: GRADES, parentGrades: PARENT_GRADES }));
   router.post('/api/login', auth.login);
   router.post('/api/logout', auth.logout);
 

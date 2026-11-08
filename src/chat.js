@@ -115,7 +115,7 @@ function createChat({ db, auth, ai }) {
     res.on('close', () => { if (!res.writableEnded) ctrl.abort(); });
     try {
       const full = await ai.ask({
-        system: systemPrompt(req.profile.grade, req.profile.name),
+        system: systemPrompt(req.profile.grade, req.profile.name, req.profile.role),
         prompt, images: saved, signal: ctrl.signal,
         onDelta: (t) => send('delta', { text: t }),
         onQueued: (pos) => send('queued', { position: pos }),
